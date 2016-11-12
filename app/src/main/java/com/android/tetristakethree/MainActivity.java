@@ -16,6 +16,8 @@ import android.speech.tts.TextToSpeech;
 import java.util.Locale;
 import java.util.Random;
 
+import static com.android.tetristakethree.R.integer.scoreTxtID;
+
 public class MainActivity extends Activity {
 	GameSurfaceView gameSurfaceView;
 	FrameLayout gameFrame;
@@ -23,7 +25,7 @@ public class MainActivity extends Activity {
 	Button left;
 	Button right;
 	Button down;
-	TextView question, result;
+	TextView question, result, scoreTxt;
 	EditText answer;
 	Button submit, cancel;
 	String speechText = "Hello";
@@ -41,7 +43,8 @@ public class MainActivity extends Activity {
 
 		question = new TextView(this);
 		question.setId(R.integer.questionID);
-		question.setText("Type in the Braille for the falling word");
+		question.setText("Type in the Braille\nfor the falling word");
+		question.setTextSize(24);
 
 		answer = new EditText(this);
 		answer.setId(R.integer.answerID);
@@ -58,6 +61,11 @@ public class MainActivity extends Activity {
 		result = new TextView(this);
 		result.setId(R.integer.resultID);
 		result.getEditableText();
+
+		scoreTxt = new TextView(this);
+		scoreTxt.setId(R.integer.scoreTxtID);
+		scoreTxt.setText("Score - ");
+		scoreTxt.setTextSize(18);
 
 		left = new Button(this);
 		left.setText("Left");
@@ -101,6 +109,7 @@ public class MainActivity extends Activity {
 		RelativeLayout.LayoutParams submitLayout = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		RelativeLayout.LayoutParams cancelLayout = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		RelativeLayout.LayoutParams resultLayout = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+		RelativeLayout.LayoutParams scoreTxtLayout = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
 		RelativeLayout.LayoutParams leftButton = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		RelativeLayout.LayoutParams rightButton = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -112,6 +121,7 @@ public class MainActivity extends Activity {
 		quizLayout.addView(submit);
 		quizLayout.addView(cancel);
 		quizLayout.addView(result);
+		quizLayout.addView(scoreTxt);
 
 		questionLayout.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
 		questionLayout.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
@@ -120,12 +130,14 @@ public class MainActivity extends Activity {
 		cancelLayout.addRule(RelativeLayout.BELOW , R.integer.answerID );
 		cancelLayout.addRule(RelativeLayout.RIGHT_OF , R.integer.submitID );
 		resultLayout.addRule(RelativeLayout.BELOW , R.integer.submitID);
+		scoreTxtLayout.addRule(RelativeLayout.BELOW, R.integer.resultID);
 
 
 		answer.setLayoutParams(answerLayout);
 		submit.setLayoutParams(submitLayout);
 		cancel.setLayoutParams(cancelLayout);
 		result.setLayoutParams(resultLayout);
+		scoreTxt.setLayoutParams(scoreTxtLayout);
 
 		submit.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {

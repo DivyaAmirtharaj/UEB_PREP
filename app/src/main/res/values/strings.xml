@@ -7,4 +7,5 @@
     <integer name="submitID">3</integer>
     <integer name="cancelID">4</integer>
     <integer name="resultID">5</integer>
+    <integer name="scoreTxtID">6</integer>
 </resources>

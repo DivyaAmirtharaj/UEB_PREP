@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Nov 10 22:28:22 PST 2016
+#Fri Nov 11 13:20:45 PST 2016
 1.base=C\:\\Android\\tetrisgame-master\\app\\build\\intermediates\\res\\resources-debug.ap_
 1.file=C\:\\Android\\tetrisgame-master\\app\\build\\intermediates\\res\\resources-debug.ap_\\resources.arsc
 2.base=C\:\\Android\\tetrisgame-master\\app\\build\\intermediates\\res\\resources-debug.ap_

@@ -18,7 +18,8 @@ public final class R {
         public static final int cancelID=0x7f040001;
         public static final int questionID=0x7f040002;
         public static final int resultID=0x7f040003;
-        public static final int submitID=0x7f040004;
+        public static final int scoreTxtID=0x7f040004;
+        public static final int submitID=0x7f040005;
     }
     public static final class string {
         public static final int app_name=0x7f050000;
@@ -27,15 +28,8 @@ public final class R {
     public static final class style {
         /**  API 11 theme customizations can go here. 
  API 14 theme customizations can go here. 
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
          */
         public static final int AppBaseTheme=0x7f030000;
-        /**  All customizations that are NOT specific to a particular API-level can go here. 
-         */
         public static final int AppTheme=0x7f030001;
     }
 }

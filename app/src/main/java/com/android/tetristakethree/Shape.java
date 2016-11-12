@@ -44,7 +44,7 @@ public class Shape {
 
 
 	public static Shape l(GameSurfaceView display) {
-		return new Shape(new Coordinate(400,0),
+		return new Shape(new Coordinate(400,-100),
 				Piece.L,
 				display);
 	}

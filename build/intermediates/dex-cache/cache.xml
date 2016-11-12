@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.0"
-        sha1="83037fef77b79d1e1e10219523ef5e6881a91fae">
+        sha1="43c841c3c02a2ad4a706cbdd3b63b3a6882b1ea8">
         <dex dex="C:\Android\tetrisgame-master\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_8f55cd32f5410355bbfad66c91e4dd0377fe4a23.jar" />
     </item>
     <item
@@ -25,7 +25,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.0"
-        sha1="52b0892a878584cda65eb32011a5ee6418739d48">
+        sha1="75ff4ec8aafb182855d84659fd2ab6858b44600d">
         <dex dex="C:\Android\tetrisgame-master\app\build\intermediates\pre-dexed\debug\instant-run_4735abdc51d95f5ba3a51537fdbfa9253653a3f3.jar" />
     </item>
 
