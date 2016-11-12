@@ -94,30 +94,10 @@ public class GameState {
 
 	public void isThisRowFull(List<int[]> getCoordinates) {
 		List<int[]> nine = new ArrayList<int[]>();
-		/*
-		List<int[]> eight = new ArrayList<int[]>();
-		List<int[]> seven = new ArrayList<int[]>();
-		List<int[]> six = new ArrayList<int[]>();
-		List<int[]> five = new ArrayList<int[]>(); */
 		for (int i = 0; i < getCoordinates().size(); i++) {
 			int[] coordPair = getCoordinates.get(i);
 			nine.add(coordPair);
-			 /*
-				switch (coordPair[1]) {
-				case 900: nine.add(coordPair);
-						  break;
-				case 800: eight.add(coordPair);
-						  break;
-				case 700: seven.add(coordPair);
-						  break;
-				case 600: six.add(coordPair);
-						  break;
-				case 500: five.add(coordPair);
-						  break;
-				default:
 
-				}
-				*/
 
 		}
 		deleteMe = new ArrayList<int[]>();
@@ -155,9 +135,9 @@ public class GameState {
 	   fallingShape.restart();
    }
 
-	public void userPressedDown() {
-		fallingShape.fall();
-	}
+//	public void userPressedDown() {
+//		fallingShape.fall();
+//	}
 
 
 }

@@ -5,30 +5,30 @@
     density="mdpi"
     format="8"
     plugin-version="2.2.2"
-    timestamp="116190790141273"
+    timestamp="136803156263032"
     token="3224941827693115511"
-    verifier="FIELD_TYPE_CHANGE" >
+    verifier="METHOD_DELETED" >
 
     <task
         name="javac"
-        duration="1030" />
+        duration="666" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="309" />
+        duration="87" />
     <task
         name="verifier"
-        duration="82" />
+        duration="9" />
 
     <artifact
         location="C:\Android\tetrisgame-master\app\build\outputs\apk\app-debug.apk"
         type="MAIN" />
 
     <build
-        timestamp="116190790141273"
-        verifier="FIELD_TYPE_CHANGE" >
+        timestamp="136803156263032"
+        verifier="METHOD_DELETED" >
         <artifact
             location="C:\Android\tetrisgame-master\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />

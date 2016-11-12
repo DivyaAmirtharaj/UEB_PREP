@@ -4,6 +4,7 @@
     <integer name="cancelID">4</integer>
     <integer name="questionID">1</integer>
     <integer name="resultID">5</integer>
+    <integer name="scoreID">7</integer>
     <integer name="scoreTxtID">6</integer>
     <integer name="submitID">3</integer>
     <string name="app_name">UEB PREP</string>

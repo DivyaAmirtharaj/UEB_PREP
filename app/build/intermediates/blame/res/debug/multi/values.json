@@ -55,17 +55,17 @@
                     "startLine": 6,
                     "startColumn": 4,
                     "startOffset": 221,
-                    "endColumn": 42,
-                    "endOffset": 259
+                    "endColumn": 39,
+                    "endOffset": 256
                 },
                 "from": {
                     "file": "C:\\Android\\tetrisgame-master\\app\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 526,
-                        "endColumn": 42,
-                        "endOffset": 564
+                        "startOffset": 568,
+                        "endColumn": 39,
+                        "endOffset": 603
                     }
                 }
             },
@@ -73,9 +73,9 @@
                 "to": {
                     "startLine": 7,
                     "startColumn": 4,
-                    "startOffset": 264,
-                    "endColumn": 40,
-                    "endOffset": 300
+                    "startOffset": 261,
+                    "endColumn": 42,
+                    "endOffset": 299
                 },
                 "from": {
                     "file": "C:\\Android\\tetrisgame-master\\app\\src\\main\\res\\values\\strings.xml"
@@ -85,9 +85,9 @@
                 "to": {
                     "startLine": 8,
                     "startColumn": 4,
-                    "startOffset": 305,
-                    "endColumn": 45,
-                    "endOffset": 346
+                    "startOffset": 304,
+                    "endColumn": 40,
+                    "endOffset": 340
                 },
                 "from": {
                     "file": "C:\\Android\\tetrisgame-master\\app\\src\\main\\res\\values\\strings.xml"
@@ -97,9 +97,9 @@
                 "to": {
                     "startLine": 9,
                     "startColumn": 4,
-                    "startOffset": 351,
-                    "endColumn": 255,
-                    "endOffset": 602
+                    "startOffset": 345,
+                    "endColumn": 45,
+                    "endOffset": 386
                 },
                 "from": {
                     "file": "C:\\Android\\tetrisgame-master\\app\\src\\main\\res\\values\\strings.xml"
@@ -109,10 +109,22 @@
                 "to": {
                     "startLine": 10,
                     "startColumn": 4,
-                    "startOffset": 607,
-                    "endLine": 12,
+                    "startOffset": 391,
+                    "endColumn": 255,
+                    "endOffset": 642
+                },
+                "from": {
+                    "file": "C:\\Android\\tetrisgame-master\\app\\src\\main\\res\\values\\strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 647,
+                    "endLine": 13,
                     "endColumn": 12,
-                    "endOffset": 685
+                    "endOffset": 725
                 },
                 "from": {
                     "file": "C:\\Android\\tetrisgame-master\\app\\src\\main\\res\\values\\styles.xml"
@@ -120,12 +132,12 @@
             },
             {
                 "to": {
-                    "startLine": 13,
+                    "startLine": 14,
                     "startColumn": 4,
-                    "startOffset": 690,
-                    "endLine": 15,
+                    "startOffset": 730,
+                    "endLine": 16,
                     "endColumn": 12,
-                    "endOffset": 757
+                    "endOffset": 797
                 },
                 "from": {
                     "file": "C:\\Android\\tetrisgame-master\\app\\src\\main\\res\\values\\styles.xml"

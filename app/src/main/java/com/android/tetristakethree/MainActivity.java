@@ -1,10 +1,10 @@
 package com.android.tetristakethree;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -14,9 +14,6 @@ import android.widget.TextView;
 import android.speech.tts.TextToSpeech;
 
 import java.util.Locale;
-import java.util.Random;
-
-import static com.android.tetristakethree.R.integer.scoreTxtID;
 
 public class MainActivity extends Activity {
 	GameSurfaceView gameSurfaceView;
@@ -25,11 +22,12 @@ public class MainActivity extends Activity {
 	Button left;
 	Button right;
 	Button down;
-	TextView question, result, scoreTxt;
+	TextView questionTextView, resultTextView, scoreLabelTextView, scoreTextView;
 	EditText answer;
 	Button submit, cancel;
 	String speechText = "Hello";
 	TextToSpeech tts;
+	int mScore = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,10 +39,10 @@ public class MainActivity extends Activity {
 		gameFrame = new FrameLayout(this);
 		quizLayout = new RelativeLayout(this);
 
-		question = new TextView(this);
-		question.setId(R.integer.questionID);
-		question.setText("Type in the Braille\nfor the falling word");
-		question.setTextSize(24);
+		questionTextView = new TextView(this);
+		questionTextView.setId(R.integer.questionID);
+		questionTextView.setText("Type in the Braille\nfor the falling word");
+		questionTextView.setTextSize(24);
 
 		answer = new EditText(this);
 		answer.setId(R.integer.answerID);
@@ -58,14 +56,20 @@ public class MainActivity extends Activity {
 		cancel.setText("Next");
 		cancel.setId(R.integer.cancelID);
 
-		result = new TextView(this);
-		result.setId(R.integer.resultID);
-		result.getEditableText();
+		resultTextView = new TextView(this);
+		resultTextView.setId(R.integer.resultID);
+		resultTextView.setTextSize(20);
+		resultTextView.getEditableText();
 
-		scoreTxt = new TextView(this);
-		scoreTxt.setId(R.integer.scoreTxtID);
-		scoreTxt.setText("Score - ");
-		scoreTxt.setTextSize(18);
+		scoreLabelTextView = new TextView(this);
+		scoreLabelTextView.setId(R.integer.scoreTxtID);
+		scoreLabelTextView.setText("Score - ");
+		scoreLabelTextView.setTextSize(18);
+
+		scoreTextView = new TextView(this);
+		scoreTextView.setId(R.integer.scoreID);
+		scoreTextView.setText("0");
+		scoreTextView.setTextSize(18);
 
 		left = new Button(this);
 		left.setText("Left");
@@ -110,18 +114,20 @@ public class MainActivity extends Activity {
 		RelativeLayout.LayoutParams cancelLayout = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		RelativeLayout.LayoutParams resultLayout = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		RelativeLayout.LayoutParams scoreTxtLayout = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+		RelativeLayout.LayoutParams scoreLayout = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
 		RelativeLayout.LayoutParams leftButton = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		RelativeLayout.LayoutParams rightButton = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		RelativeLayout.LayoutParams downButton = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
 		quizLayout.setLayoutParams(rl);
-		quizLayout.addView(question);
+		quizLayout.addView(questionTextView);
 		quizLayout.addView(answer);
 		quizLayout.addView(submit);
 		quizLayout.addView(cancel);
-		quizLayout.addView(result);
-		quizLayout.addView(scoreTxt);
+		quizLayout.addView(resultTextView);
+		quizLayout.addView(scoreLabelTextView);
+		quizLayout.addView(scoreTextView);
 
 		questionLayout.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
 		questionLayout.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
@@ -131,13 +137,16 @@ public class MainActivity extends Activity {
 		cancelLayout.addRule(RelativeLayout.RIGHT_OF , R.integer.submitID );
 		resultLayout.addRule(RelativeLayout.BELOW , R.integer.submitID);
 		scoreTxtLayout.addRule(RelativeLayout.BELOW, R.integer.resultID);
+		scoreLayout.addRule(RelativeLayout.BELOW, R.integer.resultID);
+		scoreLayout.addRule(RelativeLayout.RIGHT_OF, R.integer.scoreTxtID);
 
 
 		answer.setLayoutParams(answerLayout);
 		submit.setLayoutParams(submitLayout);
 		cancel.setLayoutParams(cancelLayout);
-		result.setLayoutParams(resultLayout);
-		scoreTxt.setLayoutParams(scoreTxtLayout);
+		resultTextView.setLayoutParams(resultLayout);
+		scoreLabelTextView.setLayoutParams(scoreTxtLayout);
+		scoreTextView.setLayoutParams(scoreLayout);
 
 		submit.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -145,8 +154,9 @@ public class MainActivity extends Activity {
 				String currQuestion = gameSurfaceView.CurrentQuestion();
 				if (answer.getText().toString().toUpperCase().equals(currQuestion))
 				{
-					result.setText("Correct");
-					gameSurfaceView.game.rightAnswer();
+					resultTextView.setText("Correct");
+					resultTextView.setTextColor(Color.GREEN);
+					gameSurfaceView.mGameState.rightAnswer();
 					gameSurfaceView.nextQuestion();
 					currQuestion = gameSurfaceView.CurrentQuestion();
 					ConvertTextToSpeech(currQuestion);
@@ -154,7 +164,8 @@ public class MainActivity extends Activity {
 				}
 				else
 				{
-					result.setText("Wrong");
+					resultTextView.setText("Wrong");
+					resultTextView.setTextColor(Color.RED);
 				}
 			}
 		});
@@ -169,19 +180,6 @@ public class MainActivity extends Activity {
 			}
 		});
 
-//		GameButtons.addView(left);
-//		GameButtons.addView(right);
-//		GameButtons.addView(down);
-
-//		leftButton.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
-//		leftButton.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-
-
-//		rightButton.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
-//		rightButton.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-
-//		downButton.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-//		downButton.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
 
 		left.setLayoutParams(leftButton);
 		right.setLayoutParams(rightButton);
@@ -225,15 +223,4 @@ public class MainActivity extends Activity {
 	}
 
 
-//	@Override
-	/*
-	public void onClick(View v) {
-		if (v == left) {
-		   gameSurfaceView.game.userPressedLeft();
-		} else if (v == right) {
-			gameSurfaceView.game.userPressedRight();
-		} else if (v == down) {
-			gameSurfaceView.game.userPressedRotate();
-		}
-	}*/
 }
