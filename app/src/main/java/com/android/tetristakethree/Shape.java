@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Shape {
-	Coordinate a;
+	Coordinate mCoordinate;
 	public Piece id;
 	public int down, right, rotate, w,h;
 	GameSurfaceView display;
 	Boolean isFalling = true, isBottom=false;
 
 	private Shape(Coordinate a, Piece id, GameSurfaceView display) {
-		this.a = a;
+		this.mCoordinate = a;
 		this.id = id;
 		this.down = -2;
 		this.right = 0;
@@ -52,18 +52,18 @@ public class Shape {
 
 	public List<Coordinate> shapeCoordinates() {
 		List<Coordinate> coords = new ArrayList<Coordinate>();
-		coords.add(a);
+		coords.add(mCoordinate);
 		return coords;
 	}
 
 	public void fall() {
-		if (a.y < dH()) {
-			this.a.y += 1;
+		if (mCoordinate.y < dH()) {
+			this.mCoordinate.y += 1;
 			isFalling = true;
 			down++;
 		} else {
 			isFalling = true;
-			a.y=0;
+			mCoordinate.y=0;
 			display.nextQuestion();
 			isBottom = true;
 
@@ -80,18 +80,18 @@ public class Shape {
 	}
 
 	public void right() {
-		if (a.x < dW() && a.y < dH()) {
-			this.a.x += 100;
+		if (mCoordinate.x < dW() && mCoordinate.y < dH()) {
+			this.mCoordinate.x += 100;
 			right ++;
 		}
 	}
 
 	public void stop() {
-		a.y = dH();
+		mCoordinate.y = dH();
 	}
 
 	public void restart() {
-		a.y = 0;
+		mCoordinate.y = 0;
 		isFalling = true;
 	}
 }

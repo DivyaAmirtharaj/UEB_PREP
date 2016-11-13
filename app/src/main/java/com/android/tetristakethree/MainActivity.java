@@ -25,7 +25,6 @@ public class MainActivity extends Activity {
 	TextView questionTextView, resultTextView, scoreLabelTextView, scoreTextView;
 	EditText answer;
 	Button submit, cancel;
-	String speechText = "Hello";
 	TextToSpeech tts;
 	int mScore = 0;
 
@@ -42,7 +41,7 @@ public class MainActivity extends Activity {
 		questionTextView = new TextView(this);
 		questionTextView.setId(R.integer.questionID);
 		questionTextView.setText("Type in the Braille\nfor the falling word");
-		questionTextView.setTextSize(24);
+		questionTextView.setTextSize(18);
 
 		answer = new EditText(this);
 		answer.setId(R.integer.answerID);
@@ -71,40 +70,7 @@ public class MainActivity extends Activity {
 		scoreTextView.setText("0");
 		scoreTextView.setTextSize(18);
 
-		left = new Button(this);
-		left.setText("Left");
-		left.setId(111);
-
-		right = new Button(this);
-		right.setText("Right");
-		right.setId(222);
-
-		down = new Button(this);
-		down.setText("Rotate");
-		down.setId(333);
-
-		tts=new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener() {
-
-			@Override
-			public void onInit(int status) {
-				// TODO Auto-generated method stub
-				if(status == TextToSpeech.SUCCESS){
-					int result=tts.setLanguage(Locale.US);
-					if(result==TextToSpeech.LANG_MISSING_DATA ||
-							result==TextToSpeech.LANG_NOT_SUPPORTED){
-						Log.e("error", "This Language is not supported");
-					}
-					else{
-					//	String currQuestion = gameSurfaceView.CurrentQuestion();
-						ConvertTextToSpeech(gameSurfaceView.CurrentQuestion());
-					}
-				}
-				else
-					Log.e("error", "Initilization Failed!");
-			}
-		});
-
-
+		InitSpeech();
 
 		RelativeLayout.LayoutParams rl = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
@@ -210,17 +176,42 @@ public class MainActivity extends Activity {
 		gameSurfaceView.onPauseGameSurfaceView();
 	}
 
+	private void InitSpeech(){
+		tts=new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener() {
+
+			@Override
+			public void onInit(int status) {
+				// TODO Auto-generated method stub
+				if(status == TextToSpeech.SUCCESS){
+					int result=tts.setLanguage(Locale.US);
+					if(result==TextToSpeech.LANG_MISSING_DATA ||
+							result==TextToSpeech.LANG_NOT_SUPPORTED){
+						Log.e("error", "This Language is not supported");
+					}
+					else{
+						String currQuestion = gameSurfaceView.CurrentQuestion();
+						ConvertTextToSpeech(gameSurfaceView.CurrentQuestion());
+					}
+				}
+				else
+					Log.e("error", "Initilization Failed!");
+			}
+		});
+
+	}
+
+
 	private void ConvertTextToSpeech(String text) {
 		// TODO Auto-generated method stub
 
-		speechText = text;
+		String speechText = text;
 		if(speechText==null||"".equals(speechText))
 		{
 			speechText = "Content not available";
 			tts.speak(speechText, TextToSpeech.QUEUE_FLUSH, null);
 		}else
 			tts.speak(speechText, TextToSpeech.QUEUE_FLUSH, null);
+		Log.i("Speech", speechText);
 	}
-
 
 }

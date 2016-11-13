@@ -2,31 +2,31 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="C:\Android\tetrisgame-master\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        is-multidex="true"
+        jar="C:\Android\tetrisgame-master\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.0"
-        sha1="e6b1f22beacc1f4571e9a5e82284b8312916fee3">
-        <dex dex="C:\Android\tetrisgame-master\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_8f55cd32f5410355bbfad66c91e4dd0377fe4a23.jar" />
+        sha1="d5ca488acdcd602565a185976256d1f06c0d104b">
+        <dex dex="C:\Android\tetrisgame-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_4735abdc51d95f5ba3a51537fdbfa9253653a3f3\classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
         jar="C:\Android\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.0"
         sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
-        <dex dex="C:\Android\tetrisgame-master\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0_df1dcee7da1b05f147c92df5f08c596f413cfbda.jar" />
+        <dex dex="C:\Android\tetrisgame-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-v4-19.1.0_df1dcee7da1b05f147c92df5f08c596f413cfbda\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Android\tetrisgame-master\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        is-multidex="true"
+        jar="C:\Android\tetrisgame-master\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.0"
-        sha1="dfdc1949cd572cceb244a47fed7b7129e054a732">
-        <dex dex="C:\Android\tetrisgame-master\app\build\intermediates\pre-dexed\debug\instant-run_4735abdc51d95f5ba3a51537fdbfa9253653a3f3.jar" />
+        sha1="76bebcb0144f1ee96eaaf7b180cfcc9fec2f0b6d">
+        <dex dex="C:\Android\tetrisgame-master\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_8f55cd32f5410355bbfad66c91e4dd0377fe4a23\classes.dex" />
     </item>
 
 </items>

@@ -1,37 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="x86,armeabi-v7a"
-    api-level="16"
-    density="mdpi"
+    abi="armeabi-v7a,armeabi"
+    api-level="23"
+    density="xxhdpi"
     format="8"
     plugin-version="2.2.2"
-    timestamp="14674181681308"
-    token="3224941827693115511"
-    verifier="FIELD_ADDED" >
+    timestamp="20252471190100"
+    token="3224941827693115511" >
 
     <task
         name="javac"
-        duration="936" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="30" />
+        duration="0" />
     <task
         name="verifier"
-        duration="15" />
-
-    <artifact
-        location="C:\Android\tetrisgame-master\app\build\outputs\apk\app-debug.apk"
-        type="MAIN" />
+        duration="0" />
 
     <build
-        timestamp="186091404440387"
+        timestamp="19831747137316"
+        verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="C:\Android\tetrisgame-master\app\build\outputs\apk\app-debug.apk"
+            type="MAIN" />
+    </build>
+    <build
+        timestamp="19924898834395"
         verifier="COMPATIBLE" >
         <artifact
-            location="C:\Android\tetrisgame-master\app\build\intermediates\builds\debug\186091404440387\classes.dex"
+            location="C:\Android\tetrisgame-master\app\build\intermediates\builds\debug\19924898834395\classes.dex"
             type="RELOAD_DEX" />
     </build>
+    <build
+        timestamp="20181170762670"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Android\tetrisgame-master\app\build\intermediates\builds\debug\20181170762670\classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        timestamp="20201315273474"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Android\tetrisgame-master\app\build\intermediates\builds\debug\20201315273474\classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build
+        timestamp="20216459306933"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Android\tetrisgame-master\app\build\intermediates\builds\debug\20216459306933\classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build timestamp="20252471190100" />
 
 </instant-run>

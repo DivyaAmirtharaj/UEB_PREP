@@ -48,7 +48,7 @@ public class GameState {
 
 	public List<int[]> getFalling() {
 		List<int[]> getFalling = new ArrayList<int[]>();
-		int[] aPair = {fallingShape.a.x, fallingShape.a.y+100};
+		int[] aPair = {fallingShape.mCoordinate.x, fallingShape.mCoordinate.y+100};
 		getFalling.add(aPair);
 
 		return getFalling;

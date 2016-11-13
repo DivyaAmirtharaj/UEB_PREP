@@ -78,7 +78,7 @@ public class GameSurfaceView extends SurfaceView implements Runnable {
 	*/
 	public final int displayHeight() {
 		DisplayMetrics d = this.getResources().getDisplayMetrics();
-		int screenHeight = d.heightPixels - 300;
+		int screenHeight = d.heightPixels / 2 + 50;
 		return screenHeight;
 	}
 
@@ -137,7 +137,7 @@ public class GameSurfaceView extends SurfaceView implements Runnable {
 					for (k = 0; k < coords.size(); k++) {
 						Rect rect = new Rect(coords.get(k).x, coords.get(k).y, coords.get(k).x + squareSize, coords.get(k).y + squareSize);
 //						canvas.drawRect(rect, paint);
-						paint.setTextSize(30);
+						paint.setTextSize(60);
 						paint.setColor(Color.BLACK);
 						canvas.drawText(CurrentQuestion(), coords.get(k).x, coords.get(k).y,paint);
 					}

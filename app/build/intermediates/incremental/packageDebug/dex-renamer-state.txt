@@ -1,4 +1,7 @@
-#Sat Nov 12 16:54:19 PST 2016
-base.0=C\:\\Android\\tetrisgame-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
+#Sun Nov 13 15:07:00 PST 2016
+base.0=C\:\\Android\\tetrisgame-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_4735abdc51d95f5ba3a51537fdbfa9253653a3f3
+renamed.1=classes2.dex
 renamed.0=classes.dex
-file.0=C\:\\Android\\tetrisgame-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
+file.1=C\:\\Android\\tetrisgame-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_8f55cd32f5410355bbfad66c91e4dd0377fe4a23\\classes.dex
+base.1=C\:\\Android\\tetrisgame-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_8f55cd32f5410355bbfad66c91e4dd0377fe4a23
+file.0=C\:\\Android\\tetrisgame-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_4735abdc51d95f5ba3a51537fdbfa9253653a3f3\\classes.dex
