@@ -64,18 +64,7 @@ public class GameSurfaceView extends SurfaceView implements Runnable {
 			}
 		}
 	}
-	/*
-	public int getColor(Piece id) {
-		switch(id) {
-		case T: return Color.argb(255, 245, 10, 170);
-		case L: return Color.argb(255, 67, 186, 85);
-		case Z: return Color.argb(255, 60, 51, 242);
-		case S: return Color.argb(255, 245, 10, 10);
-		case LL: return Color.argb(255, 231, 250, 27);
-		default: return Color.argb(255, 60, 51, 242);
-		}	
-	}
-	*/
+
 	public final int displayHeight() {
 		DisplayMetrics d = this.getResources().getDisplayMetrics();
 		int screenHeight = d.heightPixels / 2 + 50;
