@@ -9,7 +9,7 @@ public class GameState {
 	List<Shape> shapes = new ArrayList<Shape>();
 	Shape fallingShape;
 	int ground;
-	GameSurfaceView surface;
+	GameSurfaceView mGameSurfaceView;
 	List<int[]> deleteMe;
 
 
@@ -18,19 +18,12 @@ public class GameState {
 		shapes.add(tShape);
 
 		fallingShape = tShape;
-		this.surface = surface;
+		this.mGameSurfaceView = surface;
 	}
 
 	public Shape makeNewShape(int randomNumber, GameSurfaceView surface) {
-		switch(randomNumber) {
-			//case 0: return Shape.t(surface);
-			case 1: return Shape.l(surface);
-			//case 2: return Shape.z(surface);
-			//case 3: return Shape.s(surface);
-			//case 4: return Shape.ll(surface);
-			default: return Shape.l(surface);
+			return Shape.l(surface);
 		}
-	}
 
 	public int randomNumber() {
 		Random rand = new Random();
@@ -44,7 +37,7 @@ public class GameState {
 
 		if (!fallingShape.isFalling) {
 			int shapeNumber = randomNumber();
-			Shape addShape = makeNewShape(shapeNumber, surface);
+			Shape addShape = makeNewShape(shapeNumber, mGameSurfaceView);
 			shapes.add(addShape);
 			fallingShape = shapes.get(shapes.size() - 1);
 			fallingShape.isFalling = true;
@@ -132,12 +125,10 @@ public class GameState {
 
    public void restartFall()
    {
+
+	   fallingShape.stop();
 	   fallingShape.restart();
    }
-
-//	public void userPressedDown() {
-//		fallingShape.fall();
-//	}
 
 
 }

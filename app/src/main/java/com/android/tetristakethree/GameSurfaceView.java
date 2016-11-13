@@ -146,7 +146,7 @@ public class GameSurfaceView extends SurfaceView implements Runnable {
 				mSurfaceHolder.unlockCanvasAndPost(canvas);
 
 				try {
-					Thread.sleep(20); //Give the speed here
+					Thread.sleep(5); //Give the speed here
 					mGameState.fallingShape.fall();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -161,7 +161,6 @@ public class GameSurfaceView extends SurfaceView implements Runnable {
 		int questionNumber = rand.nextInt(questionList.length);
 		currQuestion = questionList[questionNumber];
 		mGameState.restartFall();
-//		ConvertTextToSpeech(currQuestion);
 	}
 	public String CurrentQuestion()
 	{

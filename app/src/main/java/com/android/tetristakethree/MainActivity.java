@@ -181,9 +181,9 @@ public class MainActivity extends Activity {
 		});
 
 
-		left.setLayoutParams(leftButton);
-		right.setLayoutParams(rightButton);
-		down.setLayoutParams(downButton);
+//		left.setLayoutParams(leftButton);
+//		right.setLayoutParams(rightButton);
+//		down.setLayoutParams(downButton);
 
 		gameFrame.addView(gameSurfaceView);
 		gameFrame.addView(quizLayout);

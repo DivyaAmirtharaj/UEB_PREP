@@ -8,7 +8,7 @@ public class Shape {
 	public Piece id;
 	public int down, right, rotate, w,h;
 	GameSurfaceView display;
-	Boolean isFalling = true;
+	Boolean isFalling = true, isBottom=false;
 
 	private Shape(Coordinate a, Piece id, GameSurfaceView display) {
 		this.a = a;
@@ -62,9 +62,16 @@ public class Shape {
 			isFalling = true;
 			down++;
 		} else {
-			isFalling = false;
+			isFalling = true;
+			a.y=0;
+			display.nextQuestion();
+			isBottom = true;
 
 		}
+	}
+
+	public boolean Bottom(){
+		return isBottom;
 	}
 
 	public boolean Falling() {
@@ -83,7 +90,10 @@ public class Shape {
 		a.y = dH();
 	}
 
-	public void restart() { a.y = 0; }
+	public void restart() {
+		a.y = 0;
+		isFalling = true;
+	}
 }
 
 
