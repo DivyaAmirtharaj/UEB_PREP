@@ -5,54 +5,33 @@
     density="xxhdpi"
     format="8"
     plugin-version="2.2.2"
-    timestamp="21477838141791"
+    timestamp="82497014211723"
     token="3224941827693115511"
-    verifier="COMPATIBLE" >
+    verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="272" />
+        duration="0" />
     <task
         name="instant-run-dex"
-        duration="689" />
+        duration="0" />
     <task
         name="instant-run-transform"
-        duration="42" />
+        duration="0" />
     <task
         name="verifier"
-        duration="8" />
+        duration="0" />
 
     <artifact
-        location="C:\Android\tetrisgame-master\app\build\intermediates\reload-dex\debug\classes.dex"
-        type="RELOAD_DEX" />
+        location="C:\Android\tetrisgame-master\app\build\outputs\apk\app-debug.apk"
+        type="MAIN" />
 
     <build
-        timestamp="21387967301402"
+        timestamp="82497014211723"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="C:\Android\tetrisgame-master\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
-    </build>
-    <build
-        timestamp="21429587930172"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="C:\Android\tetrisgame-master\app\build\intermediates\builds\debug\21429587930172\classes.dex"
-            type="RELOAD_DEX" />
-    </build>
-    <build
-        timestamp="21460835909901"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="C:\Android\tetrisgame-master\app\build\intermediates\builds\debug\21460835909901\classes.dex"
-            type="RELOAD_DEX" />
-    </build>
-    <build
-        timestamp="21477838141791"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="C:\Android\tetrisgame-master\app\build\intermediates\reload-dex\debug\classes.dex"
-            type="RELOAD_DEX" />
     </build>
 
 </instant-run>
