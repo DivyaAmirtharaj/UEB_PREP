@@ -7,6 +7,7 @@
     <integer name="scoreID">7</integer>
     <integer name="scoreTxtID">6</integer>
     <integer name="submitID">3</integer>
+    <integer name="switchKeyboardID">7</integer>
     <string name="app_name">UEB PREP</string>
     <string name="questions">a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,and,away,big,blue,can,come,down,find,for,funny,go,help,here,I,in,is,jump,little,look,make,me,my,not,one,play,red,run,said,see,the,three,to,two,up,we,where,yellow,you</string>
     <style name="AppBaseTheme" parent="android:Theme.Light">

@@ -1,7 +1,7 @@
-#Mon Nov 14 08:31:25 PST 2016
-base.0=C\:\\Android\\tetrisgame-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_4735abdc51d95f5ba3a51537fdbfa9253653a3f3
-renamed.1=classes2.dex
-renamed.0=classes.dex
-file.1=C\:\\Android\\tetrisgame-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_8f55cd32f5410355bbfad66c91e4dd0377fe4a23\\classes.dex
-base.1=C\:\\Android\\tetrisgame-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_8f55cd32f5410355bbfad66c91e4dd0377fe4a23
-file.0=C\:\\Android\\tetrisgame-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_4735abdc51d95f5ba3a51537fdbfa9253653a3f3\\classes.dex
+#Sat Nov 26 23:27:00 PST 2016
+base.0=C\:\\Android\\UEB_PREP\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_4c0345688269a9c6465fae35d7fc44a05e2914a6
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=C\:\\Android\\UEB_PREP\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_569aeefff94e7a956d83e270713d9fe6f217eaf2\\classes.dex
+base.1=C\:\\Android\\UEB_PREP\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_569aeefff94e7a956d83e270713d9fe6f217eaf2
+file.0=C\:\\Android\\UEB_PREP\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_4c0345688269a9c6465fae35d7fc44a05e2914a6\\classes.dex

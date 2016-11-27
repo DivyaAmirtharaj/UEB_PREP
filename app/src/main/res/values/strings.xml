@@ -8,4 +8,5 @@
     <integer name="resultID">5</integer>
     <integer name="scoreTxtID">6</integer>
     <integer name="scoreID">7</integer>
+    <integer name="switchKeyboardID">7</integer>
 </resources>

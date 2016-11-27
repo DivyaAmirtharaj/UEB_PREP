@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.0"
 
     defaultConfig {
-        applicationId "com.android.tetristakethree"
+        applicationId "com.android.ueb_prep"
         minSdkVersion 15
         targetSdkVersion 19
     }
