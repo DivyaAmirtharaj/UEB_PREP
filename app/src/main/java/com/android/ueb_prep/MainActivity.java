@@ -23,8 +23,8 @@ public class MainActivity extends Activity {
 	FrameLayout gameFrame;
 	RelativeLayout quizLayout;
 	TextView questionTextView, resultTextView, scoreLabelTextView, scoreTextView;
-	EditText answer;
-	Button submit, cancel, switchKeyboard;
+	EditText answerEditText;
+	Button submitButton, cancelButton, switchKeyboardButton;
 	TextToSpeech tts;
 	int mScore = 0;
 
@@ -36,11 +36,11 @@ public class MainActivity extends Activity {
 		DrawObjects();
 		InitSpeech();
 
-		submit.setOnClickListener(new View.OnClickListener() {
+		submitButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 //				tts.speak(speechText, TextToSpeech.QUEUE_FLUSH, null);
 				String currQuestion = gameSurfaceView.CurrentQuestion();
-				if (answer.getText().toString().toUpperCase().equals(currQuestion))
+				if (answerEditText.getText().toString().toUpperCase().equals(currQuestion))
 				{
 					resultTextView.setText("Correct");
 					resultTextView.setTextColor(Color.GREEN);
@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
 					gameSurfaceView.nextQuestion();
 					currQuestion = gameSurfaceView.CurrentQuestion();
 					ConvertTextToSpeech(currQuestion);
-					answer.setText("");
+					answerEditText.setText("");
 				}
 				else
 				{
@@ -58,28 +58,28 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		cancel.setOnClickListener(new View.OnClickListener() {
+		cancelButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				String currQuestion;
 				gameSurfaceView.nextQuestion();
 				currQuestion = gameSurfaceView.CurrentQuestion();
 				ConvertTextToSpeech(currQuestion);
-				answer.setText("");
+				answerEditText.setText("");
 			}
 		});
 
 
-		switchKeyboard.setOnClickListener(new View.OnClickListener() {
+		switchKeyboardButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				ShowKeyboardPicker();
 			}
 		});
 
-		answer.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+		answerEditText.setOnEditorActionListener(new EditText.OnEditorActionListener() {
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 				if (actionId == EditorInfo.IME_ACTION_DONE) {
-					submit.performClick();
+					submitButton.performClick();
 					return true;
 				}
 				return false;
@@ -160,18 +160,18 @@ public class MainActivity extends Activity {
 		questionTextView.setText("Type in the Braille\nfor the falling word");
 		questionTextView.setTextSize(18);
 
-		answer = new EditText(this);
-		answer.setId(R.integer.answerID);
-		answer.setSingleLine();
-		answer.setImeOptions(EditorInfo.IME_ACTION_DONE);
+		answerEditText = new EditText(this);
+		answerEditText.setId(R.integer.answerID);
+		answerEditText.setSingleLine();
+		answerEditText.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
-		submit = new Button(this);
-		submit.setText("Submit");
-		submit.setId(R.integer.submitID);
+		submitButton = new Button(this);
+		submitButton.setText("Submit");
+		submitButton.setId(R.integer.submitID);
 
-		cancel = new Button(this);
-		cancel.setText("Next");
-		cancel.setId(R.integer.cancelID);
+		cancelButton = new Button(this);
+		cancelButton.setText("Next");
+		cancelButton.setId(R.integer.cancelID);
 
 		resultTextView = new TextView(this);
 		resultTextView.setId(R.integer.resultID);
@@ -188,9 +188,9 @@ public class MainActivity extends Activity {
 		scoreTextView.setText("0");
 		scoreTextView.setTextSize(18);
 
-		switchKeyboard = new Button(this);
-		switchKeyboard.setText("Swith Keyboard");
-		switchKeyboard.setId(R.integer.switchKeyboardID);
+		switchKeyboardButton = new Button(this);
+		switchKeyboardButton.setText("Swith Keyboard");
+		switchKeyboardButton.setId(R.integer.switchKeyboardID);
 
 		RelativeLayout.LayoutParams rl = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
@@ -205,10 +205,10 @@ public class MainActivity extends Activity {
 
 		quizLayout.setLayoutParams(rl);
 		quizLayout.addView(questionTextView);
-		quizLayout.addView(answer);
-		quizLayout.addView(submit);
-		quizLayout.addView(cancel);
-		quizLayout.addView(switchKeyboard);
+		quizLayout.addView(answerEditText);
+		quizLayout.addView(submitButton);
+		quizLayout.addView(cancelButton);
+		quizLayout.addView(switchKeyboardButton);
 		quizLayout.addView(resultTextView);
 		quizLayout.addView(scoreLabelTextView);
 		quizLayout.addView(scoreTextView);
@@ -226,13 +226,13 @@ public class MainActivity extends Activity {
 		switchKeyboardLayout.addRule(RelativeLayout.BELOW , R.integer.scoreTxtID );
 
 
-		answer.setLayoutParams(answerLayout);
-		submit.setLayoutParams(submitLayout);
-		cancel.setLayoutParams(cancelLayout);
+		answerEditText.setLayoutParams(answerLayout);
+		submitButton.setLayoutParams(submitLayout);
+		cancelButton.setLayoutParams(cancelLayout);
 		resultTextView.setLayoutParams(resultLayout);
 		scoreLabelTextView.setLayoutParams(scoreTxtLayout);
 		scoreTextView.setLayoutParams(scoreLayout);
-		switchKeyboard.setLayoutParams(switchKeyboardLayout);
+		switchKeyboardButton.setLayoutParams(switchKeyboardLayout);
 
 	}
 

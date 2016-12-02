@@ -6,22 +6,22 @@ import java.util.List;
 import java.util.Random;
 
 public class GameState {
-	List<Shape> shapes = new ArrayList<Shape>();
-	Shape fallingShape;
+	List<Word> shapes = new ArrayList<Word>();
+	Word fallingWord;
 	GameSurfaceView mGameSurfaceView;
 	List<int[]> deleteMe;
 
 
 	public GameState(GameSurfaceView surface) {
-		Shape tShape = Shape.l(surface);
-		shapes.add(tShape);
+		Word tWord = Word.l(surface);
+		shapes.add(tWord);
 
-		fallingShape = tShape;
+		fallingWord = tWord;
 		this.mGameSurfaceView = surface;
 	}
 
-	public Shape makeNewShape(int randomNumber, GameSurfaceView surface) {
-			return Shape.l(surface);
+	public Word makeNewShape(int randomNumber, GameSurfaceView surface) {
+			return Word.l(surface);
 		}
 
 	public int randomNumber() {
@@ -30,16 +30,16 @@ public class GameState {
 		return newShape;
 	}
 
-	public List<Shape> getShapes() {
+	public List<Word> getWords() {
 		compareCoordinates(getFalling(), getCoordinates());
 		isThisRowFull(getCoordinates());
 
-		if (!fallingShape.isFalling) {
+		if (!fallingWord.isFalling) {
 			int shapeNumber = randomNumber();
-			Shape addShape = makeNewShape(shapeNumber, mGameSurfaceView);
+			Word addShape = makeNewShape(shapeNumber, mGameSurfaceView);
 			shapes.add(addShape);
-			fallingShape = shapes.get(shapes.size() - 1);
-			fallingShape.isFalling = true;
+			fallingWord = shapes.get(shapes.size() - 1);
+			fallingWord.isFalling = true;
 
 		}
 		return shapes;
@@ -47,7 +47,7 @@ public class GameState {
 
 	public List<int[]> getFalling() {
 		List<int[]> getFalling = new ArrayList<int[]>();
-		int[] aPair = {fallingShape.mCoordinate.x, fallingShape.mCoordinate.y+100};
+		int[] aPair = {fallingWord.mCoordinate.x, fallingWord.mCoordinate.y+100};
 		getFalling.add(aPair);
 
 		return getFalling;
@@ -57,8 +57,8 @@ public class GameState {
 		List<int[]> coordinateList = new ArrayList<int[]>();
 
 		for (int i = 0; i < shapes.size(); i++ ) {
-			if (shapes.get(i) != fallingShape) {
-				Shape shape = shapes.get(i);
+			if (shapes.get(i) != fallingWord) {
+				Word shape = shapes.get(i);
 				List<Coordinate> coords = shape.shapeCoordinates();
 
 
@@ -78,26 +78,25 @@ public class GameState {
 			for (int[] fallingCoords : getFalling) {
 				String fallingString = Arrays.toString(fallingCoords);
 				if (coordString.equals(fallingString)) {
-					fallingShape.isFalling = false;				}
+					fallingWord.isFalling = false;				}
 			}
 		}
 		isThisRowFull(getCoordinates());
 	}
 
 	public void isThisRowFull(List<int[]> getCoordinates) {
-		List<int[]> nine = new ArrayList<int[]>();
+		List<int[]> list = new ArrayList<int[]>();
 		for (int i = 0; i < getCoordinates().size(); i++) {
 			int[] coordPair = getCoordinates.get(i);
-			nine.add(coordPair);
+			list.add(coordPair);
 
 
 		}
 		deleteMe = new ArrayList<int[]>();
 
-		if (nine.size() == 7) {
-			for (int i = 0; i < nine.size(); i++) {
-				int[] addToDeleteMe = nine.get(i);
-//				Log.i("nine 1 " + nine.get(i)[0], "nine 2 "  + nine.get(i)[1]);
+		if (list.size() == 7) {
+			for (int i = 0; i < list.size(); i++) {
+				int[] addToDeleteMe = list.get(i);
 				deleteMe.add(addToDeleteMe);
 			}
 		}
@@ -117,16 +116,16 @@ public class GameState {
 
 
 	public void rightAnswer() {
-		fallingShape.stop();
-		fallingShape.restart();
+		fallingWord.stop();
+		fallingWord.restart();
 	}
 
 
    public void restartFall()
    {
 
-	   fallingShape.stop();
-	   fallingShape.restart();
+	   fallingWord.stop();
+	   fallingWord.restart();
    }
 
 

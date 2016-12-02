@@ -3,13 +3,13 @@ package com.android.ueb_prep;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Shape {
+public class Word {
 	Coordinate mCoordinate;
 	public int down, right, w,h;
 	GameSurfaceView display;
 	Boolean isFalling = true, isBottom=false;
 
-	private Shape(Coordinate a, GameSurfaceView display) {
+	private Word(Coordinate a, GameSurfaceView display) {
 		this.mCoordinate = a;
 		this.down = -2;
 		this.right = 0;
@@ -39,8 +39,8 @@ public class Shape {
 
 
 
-	public static Shape l(GameSurfaceView display) {
-		return new Shape(new Coordinate(540,0),
+	public static Word l(GameSurfaceView display) {
+		return new Word(new Coordinate(540,0),
 				display);
 	}
 

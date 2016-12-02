@@ -95,10 +95,10 @@ public class GameSurfaceView extends SurfaceView implements Runnable {
 				int h = canvas.getHeight();
 				canvas.drawRect(0,0,w,h, backgroundPaint);
 				
-				List<Shape> gameShapes = mGameState.getShapes();
+				List<Word> gameShapes = mGameState.getWords();
 				
 				for (int i = 0; i < 1; i++ ) {
-					Shape shape = gameShapes.get(i);
+					Word shape = gameShapes.get(i);
 					
 					Paint paint = new Paint();
 //					paint.setColor(getColor(shape.id));
@@ -133,7 +133,7 @@ public class GameSurfaceView extends SurfaceView implements Runnable {
 
 				try {
 					Thread.sleep(5); //Give the speed here
-					mGameState.fallingShape.fall();
+					mGameState.fallingWord.fall();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
