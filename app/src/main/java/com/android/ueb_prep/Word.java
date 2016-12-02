@@ -3,11 +3,12 @@ package com.android.ueb_prep;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Word {
-	Coordinate mCoordinate;
-	public int down, right, w,h;
-	GameSurfaceView display;
-	Boolean isFalling = true, isBottom=false;
+class Word {
+    Coordinate mCoordinate;
+    Boolean isFalling = true;
+    private Boolean isBottom = false;
+    private int down, right, w, h;
+    private GameSurfaceView display;
 
 	private Word(Coordinate a, GameSurfaceView display) {
 		this.mCoordinate = a;
@@ -16,6 +17,11 @@ public class Word {
 		this.display = display;
 	}
 
+    static Word l(GameSurfaceView display) {
+        return new Word(new Coordinate(540, 0),
+                display);
+    }
+
 	private int dH() {
 		int dh = display.displayHeight()-300;
 		h(dh);
@@ -23,9 +29,10 @@ public class Word {
 	}
 
 	private int h(int dH) {
-		int h = dH / 22;
-		return h;
-	}
+        int h;
+        h = dH / 22;
+        return h;
+    }
 
 	private int dW() {
 		int dw = (display.displayWidth()/2)-100;
@@ -37,24 +44,16 @@ public class Word {
 		return w;
 	}
 
+    List<Coordinate> wordCoordinates() {
+        List<Coordinate> coords = new ArrayList<Coordinate>();
+        coords.add(mCoordinate);
+        return coords;
+    }
 
-
-	public static Word l(GameSurfaceView display) {
-		return new Word(new Coordinate(540,0),
-				display);
-	}
-
-
-	public List<Coordinate> shapeCoordinates() {
-		List<Coordinate> coords = new ArrayList<Coordinate>();
-		coords.add(mCoordinate);
-		return coords;
-	}
-
-	public void fall() {
-		if (mCoordinate.y < dH()) {
-			this.mCoordinate.y += 1;
-			isFalling = true;
+    void fall() {
+        if (mCoordinate.y < dH()) {
+            this.mCoordinate.y += 1;
+            isFalling = true;
 			down++;
 		} else {
 			isFalling = true;
@@ -85,8 +84,8 @@ public class Word {
 		mCoordinate.y = dH();
 	}
 
-	public void restart() {
-		mCoordinate.y = 0;
+    void restart() {
+        mCoordinate.y = 0;
 		isFalling = true;
 	}
 }

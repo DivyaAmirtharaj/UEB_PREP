@@ -13,11 +13,10 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 public class GameSurfaceView extends SurfaceView implements Runnable {
+	public GameState mGameState;
 	SurfaceHolder mSurfaceHolder;
 	volatile boolean running = false;
 	Thread thread = null;
-	private Paint backgroundPaint;
-	public GameState mGameState;
 	int w, h;
 	int y = 0;
 	int x = 0;
@@ -26,6 +25,7 @@ public class GameSurfaceView extends SurfaceView implements Runnable {
 	List<Coordinate> coords;
 	String[] questionList;
 	String currQuestion;
+	private Paint backgroundPaint;
 
 	public GameSurfaceView(Context context) {
 		super(context);
@@ -65,23 +65,27 @@ public class GameSurfaceView extends SurfaceView implements Runnable {
 
 	public final int displayHeight() {
 		DisplayMetrics d = this.getResources().getDisplayMetrics();
-		int screenHeight = d.heightPixels / 2 + 50;
+		int screenHeight;
+		screenHeight = d.heightPixels / 2 + 50;
 		return screenHeight;
 	}
 
 	public final int displayWidth() {
 		DisplayMetrics d = this.getResources().getDisplayMetrics();
-		int screenWidth = d.widthPixels;
+		int screenWidth;
+		screenWidth = d.widthPixels;
 		return screenWidth;
 	}
 	
 	private int h(int dH) {
-		int h = dH / 22;
+		int h;
+		h = dH / 22;
 		return h;
 	}
 	
 	private int w(int dW) {
-		int w = dW / 13;
+		int w;
+		w = dW / 13;
 		return w;
 	}
 	
@@ -94,17 +98,16 @@ public class GameSurfaceView extends SurfaceView implements Runnable {
 				int w = canvas.getWidth();
 				int h = canvas.getHeight();
 				canvas.drawRect(0,0,w,h, backgroundPaint);
-				
-				List<Word> gameShapes = mGameState.getWords();
+
+				List<Word> gameWords = mGameState.getWords();
 				
 				for (int i = 0; i < 1; i++ ) {
-					Word shape = gameShapes.get(i);
+					Word word = gameWords.get(i);
 					
 					Paint paint = new Paint();
-//					paint.setColor(getColor(shape.id));
-					
+
 					List<Coordinate> coordinatesToDelete = mGameState.deleteThisRow();
-					coords = shape.shapeCoordinates();
+					coords = word.wordCoordinates();
 						
 					for (int k = 0; k < coordinatesToDelete.size(); k++) {
 						int[] compareCoordToDelete = {coordinatesToDelete.get(k).x, coordinatesToDelete.get(k).y};

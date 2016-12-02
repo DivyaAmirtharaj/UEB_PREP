@@ -5,47 +5,48 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class GameState {
-	List<Word> shapes = new ArrayList<Word>();
+class GameState {
 	Word fallingWord;
-	GameSurfaceView mGameSurfaceView;
-	List<int[]> deleteMe;
+	private List<Word> mWordList = new ArrayList<Word>();
+	private GameSurfaceView mGameSurfaceView;
+	private List<int[]> deleteMe;
 
 
-	public GameState(GameSurfaceView surface) {
+	GameState(GameSurfaceView surface) {
 		Word tWord = Word.l(surface);
-		shapes.add(tWord);
+		mWordList.add(tWord);
 
 		fallingWord = tWord;
 		this.mGameSurfaceView = surface;
 	}
 
-	public Word makeNewShape(int randomNumber, GameSurfaceView surface) {
+	private Word makeNewWord(int randomNumber, GameSurfaceView surface) {
 			return Word.l(surface);
 		}
 
-	public int randomNumber() {
+	private int randomNumber() {
 		Random rand = new Random();
-		int newShape = rand.nextInt(5);
-		return newShape;
+		int newWord;
+		newWord = rand.nextInt(5);
+		return newWord;
 	}
 
-	public List<Word> getWords() {
+	List<Word> getWords() {
 		compareCoordinates(getFalling(), getCoordinates());
 		isThisRowFull(getCoordinates());
 
 		if (!fallingWord.isFalling) {
-			int shapeNumber = randomNumber();
-			Word addShape = makeNewShape(shapeNumber, mGameSurfaceView);
-			shapes.add(addShape);
-			fallingWord = shapes.get(shapes.size() - 1);
+			int wordNumber = randomNumber();
+			Word addWord = makeNewWord(wordNumber, mGameSurfaceView);
+			mWordList.add(addWord);
+			fallingWord = mWordList.get(mWordList.size() - 1);
 			fallingWord.isFalling = true;
 
 		}
-		return shapes;
+		return mWordList;
 	}
 
-	public List<int[]> getFalling() {
+	private List<int[]> getFalling() {
 		List<int[]> getFalling = new ArrayList<int[]>();
 		int[] aPair = {fallingWord.mCoordinate.x, fallingWord.mCoordinate.y+100};
 		getFalling.add(aPair);
@@ -53,13 +54,13 @@ public class GameState {
 		return getFalling;
 	}
 
-	public List<int[]> getCoordinates() {
+	private List<int[]> getCoordinates() {
 		List<int[]> coordinateList = new ArrayList<int[]>();
 
-		for (int i = 0; i < shapes.size(); i++ ) {
-			if (shapes.get(i) != fallingWord) {
-				Word shape = shapes.get(i);
-				List<Coordinate> coords = shape.shapeCoordinates();
+		for (int i = 0; i < mWordList.size(); i++) {
+			if (mWordList.get(i) != fallingWord) {
+				Word word = mWordList.get(i);
+				List<Coordinate> coords = word.wordCoordinates();
 
 
 
@@ -72,9 +73,9 @@ public class GameState {
 		return coordinateList;
 	}
 
-	public void compareCoordinates(List<int[]> getFalling, List<int[]> getCoordinates) {
-		for (int[] shapeCoords : getCoordinates ) {
-			String coordString = Arrays.toString(shapeCoords);
+	private void compareCoordinates(List<int[]> getFalling, List<int[]> getCoordinates) {
+		for (int[] wordCoords : getCoordinates) {
+			String coordString = Arrays.toString(wordCoords);
 			for (int[] fallingCoords : getFalling) {
 				String fallingString = Arrays.toString(fallingCoords);
 				if (coordString.equals(fallingString)) {
@@ -84,7 +85,7 @@ public class GameState {
 		isThisRowFull(getCoordinates());
 	}
 
-	public void isThisRowFull(List<int[]> getCoordinates) {
+	private void isThisRowFull(List<int[]> getCoordinates) {
 		List<int[]> list = new ArrayList<int[]>();
 		for (int i = 0; i < getCoordinates().size(); i++) {
 			int[] coordPair = getCoordinates.get(i);
@@ -103,7 +104,7 @@ public class GameState {
 
 	}
 
-	public List<Coordinate> deleteThisRow() {
+	List<Coordinate> deleteThisRow() {
 		List<Coordinate> coordsToDelete = new ArrayList<Coordinate>();
 		for (int i = 0; i < deleteMe.size(); i++) {
 			int x = deleteMe.get(i)[0];
@@ -115,13 +116,13 @@ public class GameState {
 	}
 
 
-	public void rightAnswer() {
+	void rightAnswer() {
 		fallingWord.stop();
 		fallingWord.restart();
 	}
 
 
-   public void restartFall()
+	void restartFall()
    {
 
 	   fallingWord.stop();
