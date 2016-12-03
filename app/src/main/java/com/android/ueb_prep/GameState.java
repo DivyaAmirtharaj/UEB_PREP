@@ -60,12 +60,11 @@ class GameState {
 		for (int i = 0; i < mWordList.size(); i++) {
 			if (mWordList.get(i) != fallingWord) {
 				Word word = mWordList.get(i);
-				List<Coordinate> coords = word.wordCoordinates();
+				List<Coordinate> coordinates = word.wordCoordinates();
 
 
-
-				for (int j = 0; j < coords.size(); j++) {
-					int[] pair = {coords.get(j).x, coords.get(j).y};
+				for (int j = 0; j < coordinates.size(); j++) {
+					int[] pair = {coordinates.get(j).x, coordinates.get(j).y};
 					coordinateList.add(pair);
 				}
 			}
@@ -74,11 +73,11 @@ class GameState {
 	}
 
 	private void compareCoordinates(List<int[]> getFalling, List<int[]> getCoordinates) {
-		for (int[] wordCoords : getCoordinates) {
-			String coordString = Arrays.toString(wordCoords);
+		for (int[] wordCoordinates : getCoordinates) {
+			String coordinatesString = Arrays.toString(wordCoordinates);
 			for (int[] fallingCoords : getFalling) {
 				String fallingString = Arrays.toString(fallingCoords);
-				if (coordString.equals(fallingString)) {
+				if (coordinatesString.equals(fallingString)) {
 					fallingWord.isFalling = false;				}
 			}
 		}
@@ -88,8 +87,8 @@ class GameState {
 	private void isThisRowFull(List<int[]> getCoordinates) {
 		List<int[]> list = new ArrayList<int[]>();
 		for (int i = 0; i < getCoordinates().size(); i++) {
-			int[] coordPair = getCoordinates.get(i);
-			list.add(coordPair);
+			int[] coordinatePair = getCoordinates.get(i);
+			list.add(coordinatePair);
 
 
 		}
@@ -105,14 +104,14 @@ class GameState {
 	}
 
 	List<Coordinate> deleteThisRow() {
-		List<Coordinate> coordsToDelete = new ArrayList<Coordinate>();
+		List<Coordinate> coordinateToDelete = new ArrayList<Coordinate>();
 		for (int i = 0; i < deleteMe.size(); i++) {
 			int x = deleteMe.get(i)[0];
 			int y = deleteMe.get(i)[1];
 			Coordinate coord = new Coordinate(x,y);
-			coordsToDelete.add(coord);
+			coordinateToDelete.add(coord);
 		}
-		return coordsToDelete;
+		return coordinateToDelete;
 	}
 
 

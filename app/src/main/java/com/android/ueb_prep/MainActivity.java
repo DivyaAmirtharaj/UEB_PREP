@@ -3,6 +3,7 @@ package com.android.ueb_prep;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -14,7 +15,6 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
-import android.speech.tts.TextToSpeech;
 
 import java.util.Locale;
 
@@ -129,7 +129,7 @@ public class MainActivity extends Activity {
 					}
 				}
 				else
-					Log.e("error", "Initilization Failed!");
+					Log.e("error", "Initialization Failed!");
 			}
 		});
 

@@ -45,10 +45,10 @@ class Word {
 	}
 
     List<Coordinate> wordCoordinates() {
-        List<Coordinate> coords = new ArrayList<Coordinate>();
-        coords.add(mCoordinate);
-        return coords;
-    }
+		List<Coordinate> coordinateList = new ArrayList<Coordinate>();
+		coordinateList.add(mCoordinate);
+		return coordinateList;
+	}
 
     void fall() {
         if (mCoordinate.y < dH()) {

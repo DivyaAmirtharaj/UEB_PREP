@@ -1,8 +1,5 @@
 package com.android.ueb_prep;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,6 +8,10 @@ import android.graphics.Rect;
 import android.util.DisplayMetrics;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class GameSurfaceView extends SurfaceView implements Runnable {
 	public GameState mGameState;
@@ -21,8 +22,8 @@ public class GameSurfaceView extends SurfaceView implements Runnable {
 	int y = 0;
 	int x = 0;
 	int squareSize = 95;
-	String compareDeleteCoordString;
-	List<Coordinate> coords;
+	String compareDeleteCoordinateString;
+	List<Coordinate> mCoordinateList;
 	String[] questionList;
 	String currQuestion;
 	private Paint backgroundPaint;
@@ -107,28 +108,28 @@ public class GameSurfaceView extends SurfaceView implements Runnable {
 					Paint paint = new Paint();
 
 					List<Coordinate> coordinatesToDelete = mGameState.deleteThisRow();
-					coords = word.wordCoordinates();
+					mCoordinateList = word.wordCoordinates();
 						
 					for (int k = 0; k < coordinatesToDelete.size(); k++) {
-						int[] compareCoordToDelete = {coordinatesToDelete.get(k).x, coordinatesToDelete.get(k).y};
-						compareDeleteCoordString = Arrays.toString(compareCoordToDelete);
-						
-						for (int j = 0; j < coords.size(); j++) {
-	
-							int[] compareCoord = {coords.get(j).x, coords.get(j).y};
-							String compareCoordString = Arrays.toString(compareCoord);
-							
-							if(compareCoordString.equals(compareDeleteCoordString)) {
-								coords.remove(j);
+						int[] compareCoordinateToDelete = {coordinatesToDelete.get(k).x, coordinatesToDelete.get(k).y};
+						compareDeleteCoordinateString = Arrays.toString(compareCoordinateToDelete);
+
+						for (int j = 0; j < mCoordinateList.size(); j++) {
+
+							int[] compareCoordinate = {mCoordinateList.get(j).x, mCoordinateList.get(j).y};
+							String compareCoordinateString = Arrays.toString(compareCoordinate);
+
+							if (compareCoordinateString.equals(compareDeleteCoordinateString)) {
+								mCoordinateList.remove(j);
 							}
 						}
 					}
 					int k;
-					for (k = 0; k < coords.size(); k++) {
-						Rect rect = new Rect(coords.get(k).x, coords.get(k).y, coords.get(k).x + squareSize, coords.get(k).y + squareSize);
+					for (k = 0; k < mCoordinateList.size(); k++) {
+						Rect rect = new Rect(mCoordinateList.get(k).x, mCoordinateList.get(k).y, mCoordinateList.get(k).x + squareSize, mCoordinateList.get(k).y + squareSize);
 						paint.setTextSize(60);
 						paint.setColor(Color.BLACK);
-						canvas.drawText(CurrentQuestion(), coords.get(k).x, coords.get(k).y,paint);
+						canvas.drawText(CurrentQuestion(), mCoordinateList.get(k).x, mCoordinateList.get(k).y, paint);
 					}
 				}
 
