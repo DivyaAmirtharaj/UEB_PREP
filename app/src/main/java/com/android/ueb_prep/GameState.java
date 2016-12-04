@@ -108,8 +108,8 @@ class GameState {
 		for (int i = 0; i < deleteMe.size(); i++) {
 			int x = deleteMe.get(i)[0];
 			int y = deleteMe.get(i)[1];
-			Coordinate coord = new Coordinate(x,y);
-			coordinateToDelete.add(coord);
+			Coordinate mCoordinate = new Coordinate(x, y);
+			coordinateToDelete.add(mCoordinate);
 		}
 		return coordinateToDelete;
 	}

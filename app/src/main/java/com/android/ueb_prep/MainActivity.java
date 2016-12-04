@@ -49,11 +49,18 @@ public class MainActivity extends Activity {
 					currQuestion = gameSurfaceView.CurrentQuestion();
 					ConvertTextToSpeech(currQuestion);
 					answerEditText.setText("");
+					mScore = mScore + 10;
+					scoreTextView.setText(String.valueOf(mScore));
+
 				}
 				else
 				{
 					resultTextView.setText("Wrong");
 					resultTextView.setTextColor(Color.RED);
+					mScore = mScore - 5;
+					scoreTextView.setText(String.valueOf(mScore));
+
+
 				}
 			}
 		});
@@ -185,7 +192,7 @@ public class MainActivity extends Activity {
 
 		scoreTextView = new TextView(this);
 		scoreTextView.setId(R.integer.scoreID);
-		scoreTextView.setText("0");
+		scoreTextView.setText(String.valueOf(mScore));
 		scoreTextView.setTextSize(18);
 
 		switchKeyboardButton = new Button(this);

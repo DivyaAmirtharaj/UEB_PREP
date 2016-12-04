@@ -5,13 +5,13 @@
     density="xxhdpi"
     format="8"
     plugin-version="2.2.2"
-    timestamp="137456179425378"
+    timestamp="141060157006242"
     token="-2028510166950470877"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="2147" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
@@ -27,7 +27,7 @@
         type="MAIN" />
 
     <build
-        timestamp="137456179425378"
+        timestamp="141060157006242"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="C:\Android\UEB_PREP\app\build\outputs\apk\app-debug.apk"
