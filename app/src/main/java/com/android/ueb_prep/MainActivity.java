@@ -120,11 +120,10 @@ public class MainActivity extends Activity {
 
 	private void InitSpeech(){
 		tts=new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener() {
-
 			@Override
 			public void onInit(int status) {
-				// TODO Auto-generated method stub
 				if(status == TextToSpeech.SUCCESS){
+					Log.e("error", "Speech Initialization Success!");
 					int result=tts.setLanguage(Locale.US);
 					if(result==TextToSpeech.LANG_MISSING_DATA ||
 							result==TextToSpeech.LANG_NOT_SUPPORTED){
@@ -136,7 +135,7 @@ public class MainActivity extends Activity {
 					}
 				}
 				else
-					Log.e("error", "Initialization Failed!");
+					Log.e("error", "Speech Initialization Failed!");
 			}
 		});
 
