@@ -5,32 +5,36 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.Bundle;
+import android.os.Message;
 import android.util.DisplayMetrics;
+
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
+import static java.lang.Thread.sleep;
 
 public class GameSurfaceView extends SurfaceView implements Runnable {
 	public GameState mGameState;
 	SurfaceHolder mSurfaceHolder;
 	volatile boolean running = false;
+	Context mContext;
 	Thread thread = null;
-	int w, h;
-	int y = 0;
-	int x = 0;
 	int squareSize = 95;
-	String compareDeleteCoordinateString;
 	List<Coordinate> mCoordinateList;
 	String[] questionList;
 	String currQuestion;
 	private Paint backgroundPaint;
+	private android.os.Handler mHandler;
 
-	public GameSurfaceView(Context context) {
+	public GameSurfaceView(Context context, android.os.Handler handler) {
 		super(context);
+		mContext = context;
 		mSurfaceHolder = getHolder();
+		mHandler = handler;
 		
 		backgroundPaint = new Paint();
 		backgroundPaint.setColor(Color.WHITE);
@@ -77,19 +81,7 @@ public class GameSurfaceView extends SurfaceView implements Runnable {
 		screenWidth = d.widthPixels;
 		return screenWidth;
 	}
-	
-	private int h(int dH) {
-		int h;
-		h = dH / 22;
-		return h;
-	}
-	
-	private int w(int dW) {
-		int w;
-		w = dW / 13;
-		return w;
-	}
-	
+
 	@Override
 	public void run() {
 		while (running) {
@@ -106,27 +98,9 @@ public class GameSurfaceView extends SurfaceView implements Runnable {
 					Word word = gameWords.get(i);
 					
 					Paint paint = new Paint();
-
-					List<Coordinate> coordinatesToDelete = mGameState.deleteThisRow();
 					mCoordinateList = word.wordCoordinates();
-						
-					for (int k = 0; k < coordinatesToDelete.size(); k++) {
-						int[] compareCoordinateToDelete = {coordinatesToDelete.get(k).x, coordinatesToDelete.get(k).y};
-						compareDeleteCoordinateString = Arrays.toString(compareCoordinateToDelete);
-
-						for (int j = 0; j < mCoordinateList.size(); j++) {
-
-							int[] compareCoordinate = {mCoordinateList.get(j).x, mCoordinateList.get(j).y};
-							String compareCoordinateString = Arrays.toString(compareCoordinate);
-
-							if (compareCoordinateString.equals(compareDeleteCoordinateString)) {
-								mCoordinateList.remove(j);
-							}
-						}
-					}
 					int k;
 					for (k = 0; k < mCoordinateList.size(); k++) {
-						Rect rect = new Rect(mCoordinateList.get(k).x, mCoordinateList.get(k).y, mCoordinateList.get(k).x + squareSize, mCoordinateList.get(k).y + squareSize);
 						paint.setTextSize(60);
 						paint.setColor(Color.BLACK);
 						canvas.drawText(CurrentQuestion(), mCoordinateList.get(k).x, mCoordinateList.get(k).y, paint);
@@ -136,7 +110,7 @@ public class GameSurfaceView extends SurfaceView implements Runnable {
 				mSurfaceHolder.unlockCanvasAndPost(canvas);
 
 				try {
-					Thread.sleep(5); //Give the speed here
+					sleep(5); //Give the speed here
 					mGameState.fallingWord.fall();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -151,6 +125,25 @@ public class GameSurfaceView extends SurfaceView implements Runnable {
 		int questionNumber = rand.nextInt(questionList.length);
 		currQuestion = questionList[questionNumber];
 		mGameState.restartFall();
+	}
+
+	public void reachedBottom() {
+		// TODO
+		// When it reached bottom it need to change the score
+		Message msg = mHandler.obtainMessage();
+		Bundle bundle = new Bundle();
+		String threadMessage = "Reached Bottom";
+		bundle.putString("message", threadMessage);
+		msg.setData(bundle);
+		mHandler.sendMessage(msg);
+		try {
+			sleep(2000); //Pause bettween words
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//	nextQuestion();
+
 	}
 	public String CurrentQuestion()
 	{

@@ -4,16 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Word {
-    Coordinate mCoordinate;
+	Coordinate mCoordinate;
     Boolean isFalling = true;
-    private Boolean isBottom = false;
-    private int down, right, w, h;
     private GameSurfaceView display;
 
 	private Word(Coordinate a, GameSurfaceView display) {
 		this.mCoordinate = a;
-		this.down = -2;
-		this.right = 0;
 		this.display = display;
 	}
 
@@ -34,15 +30,6 @@ class Word {
         return h;
     }
 
-	private int dW() {
-		int dw = (display.displayWidth()/2)-100;
-		w(dw);
-		return dw;
-	}
-
-	private int w(int dW) {
-		return w;
-	}
 
     List<Coordinate> wordCoordinates() {
 		List<Coordinate> coordinateList = new ArrayList<Coordinate>();
@@ -54,31 +41,14 @@ class Word {
         if (mCoordinate.y < dH()) {
             this.mCoordinate.y += 1;
             isFalling = true;
-			down++;
 		} else {
 			isFalling = true;
 			mCoordinate.y=0;
-			display.nextQuestion();
-			isBottom = true;
-
+			display.reachedBottom();
 		}
 	}
 
-	public boolean Bottom(){
-		return isBottom;
-	}
 
-	public boolean Falling() {
-		boolean fall = isFalling;
-		return isFalling;
-	}
-
-	public void right() {
-		if (mCoordinate.x < dW() && mCoordinate.y < dH()) {
-			this.mCoordinate.x += 100;
-			right ++;
-		}
-	}
 
 	public void stop() {
 		mCoordinate.y = dH();

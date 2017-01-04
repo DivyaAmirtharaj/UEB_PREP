@@ -3,10 +3,15 @@ package com.android.ueb_prep;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.speech.tts.TextToSpeech;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -18,13 +23,14 @@ import android.widget.TextView;
 
 import java.util.Locale;
 
+
 public class MainActivity extends Activity {
+	public Button submitButton, cancelButton, switchKeyboardButton;
 	GameSurfaceView gameSurfaceView;
 	FrameLayout gameFrame;
 	RelativeLayout quizLayout;
 	TextView questionTextView, resultTextView, scoreLabelTextView, scoreTextView;
 	EditText answerEditText;
-	Button submitButton, cancelButton, switchKeyboardButton;
 	TextToSpeech tts;
 	int mScore = 0;
 
@@ -32,17 +38,26 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
+		Handler handler = new Handler() {
+			public void handleMessage(Message msg) {
+				Bundle bundle = msg.getData();
+				String message = bundle.getString("message");
+				submitAnswer();
+			}
+		};
 
+		gameSurfaceView = new GameSurfaceView(this, handler);
 		DrawObjects();
 		InitSpeech();
 
 		submitButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-//				tts.speak(speechText, TextToSpeech.QUEUE_FLUSH, null);
 				String currQuestion = gameSurfaceView.CurrentQuestion();
 				if (answerEditText.getText().toString().toUpperCase().equals(currQuestion))
 				{
-					resultTextView.setText("Correct");
+					String result = "Correct";
+					ConvertTextToSpeech(result);
+					resultTextView.setText(result);
 					resultTextView.setTextColor(Color.GREEN);
 					gameSurfaceView.mGameState.rightAnswer();
 					gameSurfaceView.nextQuestion();
@@ -51,19 +66,45 @@ public class MainActivity extends Activity {
 					answerEditText.setText("");
 					mScore = mScore + 10;
 					scoreTextView.setText(String.valueOf(mScore));
-
 				}
 				else
 				{
-					resultTextView.setText("Wrong");
+					String result = "Incorrect";
+					resultTextView.setText(result);
+					ConvertTextToSpeech(result);
 					resultTextView.setTextColor(Color.RED);
 					mScore = mScore - 5;
 					scoreTextView.setText(String.valueOf(mScore));
 
-
 				}
 			}
 		});
+
+		answerEditText.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+				//TODO
+			}
+
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+				String string = charSequence.toString();
+				if (string.length() > 0 && (string.contains("\n") || string.contains(" "))) {
+					// Removing the space from the string
+					String trimString = string.replace(" ", "");
+					answerEditText.setText(trimString);
+					answerEditText.setSelection(trimString.length());
+					submitButton.performClick();
+				}
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable editable) {
+
+			}
+		});
+
 
 		cancelButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -93,8 +134,11 @@ public class MainActivity extends Activity {
 			}
 		});
 
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 		gameFrame.addView(gameSurfaceView);
 		gameFrame.addView(quizLayout);
+
+
 		setContentView(gameFrame);
 
 	}
@@ -102,19 +146,13 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		InitSpeech();
 		gameSurfaceView.onResumeGameSurfaceView();
 	}
 
 	@Override
 	public void onPause() {
-
 		super.onPause();
-		if(tts != null){
-
-			tts.stop();
-			tts.shutdown();
-		}
-
 		gameSurfaceView.onPauseGameSurfaceView();
 	}
 
@@ -149,14 +187,13 @@ public class MainActivity extends Activity {
 		if(speechText==null||"".equals(speechText))
 		{
 			speechText = "Content not available";
-			tts.speak(speechText, TextToSpeech.QUEUE_FLUSH, null);
+			tts.speak(speechText, TextToSpeech.QUEUE_ADD, null);
 		}else
-			tts.speak(speechText, TextToSpeech.QUEUE_FLUSH, null);
+			tts.speak(speechText, TextToSpeech.QUEUE_ADD, null);
 		Log.i("Speech", speechText);
 	}
 
 	private void DrawObjects(){
-		gameSurfaceView = new GameSurfaceView(this);
 
 		gameFrame = new FrameLayout(this);
 		quizLayout = new RelativeLayout(this);
@@ -195,7 +232,7 @@ public class MainActivity extends Activity {
 		scoreTextView.setTextSize(18);
 
 		switchKeyboardButton = new Button(this);
-		switchKeyboardButton.setText("Swith Keyboard");
+		switchKeyboardButton.setText("Switch Keyboard");
 		switchKeyboardButton.setId(R.integer.switchKeyboardID);
 
 		RelativeLayout.LayoutParams rl = new LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -229,6 +266,7 @@ public class MainActivity extends Activity {
 		scoreTxtLayout.addRule(RelativeLayout.BELOW, R.integer.resultID);
 		scoreLayout.addRule(RelativeLayout.BELOW, R.integer.resultID);
 		scoreLayout.addRule(RelativeLayout.RIGHT_OF, R.integer.scoreTxtID);
+
 		switchKeyboardLayout.addRule(RelativeLayout.BELOW , R.integer.scoreTxtID );
 
 
@@ -246,5 +284,37 @@ public class MainActivity extends Activity {
 		InputMethodManager imeManager = (InputMethodManager) getApplicationContext().getSystemService(INPUT_METHOD_SERVICE);
 		imeManager.showInputMethodPicker();
 	}
+
+	public void submitAnswer() {
+		String currQuestion = gameSurfaceView.CurrentQuestion();
+		if (answerEditText.getText().toString().toUpperCase().equals(currQuestion)) {
+			String result = "Correct";
+			ConvertTextToSpeech(result);
+			resultTextView.setText(result);
+			resultTextView.setTextColor(Color.GREEN);
+			gameSurfaceView.mGameState.rightAnswer();
+			gameSurfaceView.nextQuestion();
+			currQuestion = gameSurfaceView.CurrentQuestion();
+			ConvertTextToSpeech(currQuestion);
+			answerEditText.setText("");
+			mScore = mScore + 10;
+			scoreTextView.setText(String.valueOf(mScore));
+
+		} else {
+			String result = "Incorrect";
+			resultTextView.setText(result);
+			ConvertTextToSpeech(result);
+			resultTextView.setTextColor(Color.RED);
+			mScore = mScore - 5;
+			scoreTextView.setText(String.valueOf(mScore));
+			gameSurfaceView.nextQuestion();
+			currQuestion = gameSurfaceView.CurrentQuestion();
+			ConvertTextToSpeech(currQuestion);
+			answerEditText.setText("");
+
+		}
+	}
+
+
 
 }
